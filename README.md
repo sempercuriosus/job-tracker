@@ -4,6 +4,8 @@ I am tired of manipulating a spreadsheet to input data after I send in a job app
 
 This is meant to be quick, simple, and as vanilla as I can make it. I have nothing against third-party integrations, but I like to be able to have as few dependencies as I can too. It is about balancing values and speed, largely, I think.
 
+I also am building this thinking at scale and adding a _lot_ more to the app, but that was more for my planning purposes than actually intent for implementation.
+
 ## THE PLAN
 
 **WHEN** the script is run **THEN** I want to ask for the following information:
