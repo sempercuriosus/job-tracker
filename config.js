@@ -1,7 +1,8 @@
 const options = {
   format: 'utf8',
+  devMode: false,
   importFileLocation:
-    '/Users/keys/Documents/career/2025-jobs-main.csv',
+    '/Users/keys/Documents/career/2025-jobs copy.csv',
   exportFileLocation:
     '/Users/keys/Documents/career/2025-jobs-main.csv',
   splitOn: '\n',
