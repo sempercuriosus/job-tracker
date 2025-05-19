@@ -1,6 +1,6 @@
 # THE POINT
 
-I am tired of manipulating a spreadsheet to input data after I send in a job application. I almost always get caught with an issue of some such nonsense, even though it should be simple. With the number of applications one is expected to send it will be difficult to keep track of what roles and all I have been looking at, and I want to fix that.
+I am tired of manipulating a spreadsheet to input data after I send in a job application. I almost always get caught with an issue of some nonsense, even though it should be simple. With the number of applications one is expected to send it will be difficult to keep track of what roles and all I have been looking at, and I want to fix that.
 
 This is meant to be quick, simple, and as vanilla as I can make it. I have nothing against third-party integrations, but I like to be able to have as few dependencies as I can too. It is about balancing values and speed, largely, I think.
 
