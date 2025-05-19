@@ -39,6 +39,10 @@ async function questions() {
           name: 'Frontend Dev',
           value: 'Frontend Developer',
         },
+        {
+          name: 'Dev',
+          value: 'Developer',
+        },
       ],
     });
 
