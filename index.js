@@ -5,28 +5,34 @@ const opt = require('./config.js');
 
 async function main() {
   const WELCOME_MESSAGE = `
-+ ------------------------------------------------------------------------------------- +
-|       _       _          _                _ _           _   _                         |
-|      | | ___ | |__      / \\   _ __  _ __ | (_) ___ __ _| |_(_) ___  _ __              |
-|   _  | |/ _ \\| '_ \\    / _ \\ | '_ \\| '_ \\| | |/ __/ _\` | __| |/ _ \\| '_ \\             |
-|  | |_| | (_) | |_) |  / ___ \\| |_) | |_) | | | (_| (_| | |_| | (_) | | | |            |
-|   \\___/ \\___/|_.__/  /_/   \\_\\ .__/| .__/|_|_|\\___\\__,_|\\__|_|\\___/|_| |_|            |
-|                              |_|   |_|                                                |
-|   _   _      _                                                                        |
-|  | | | | ___| |_ __   ___ _ _                                                         |
-|  | |_| |/ _ \\ | '_ \\ / _ \\ '__|                                                       |
-|  |  _  |  __/ | |_) |  __/ |                                                          |
-|  |_| |_|\\___|_| .__/ \\___|_|                                                          |
-|               |_|                                                                     |
-+ ------------------------------------------------------------------------------------- +
-`;
+  + - - - - - - - - - - - - - - - +
+  |     Job Application Helper    |
+  + - - - - - - - - - - - - - - - +
+  `;
+
   console.log(WELCOME_MESSAGE);
 
-  const DATA = await get();
+  try {
+    const DATA = await get();
 
-  const NEW_APPLICATION = await questions();
+    if (!DATA) {
+      throw 'DATA read was undefined or otherwise not usable.';
+    }
 
-  write(DATA + opt.splitOn + NEW_APPLICATION);
+    const NEW_APPLICATION = await questions();
+
+    if (!NEW_APPLICATION) {
+      throw 'NEW APPLICATION was undefined or otherwise not usable.';
+    }
+
+    write(DATA + opt.splitOn + NEW_APPLICATION);
+  } catch (error) {
+    console.log();
+
+    if (opt.devMode === true) console.error(error);
+  } finally {
+    console.log('Script Done.');
+  }
 }
 
 main();
