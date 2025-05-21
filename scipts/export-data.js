@@ -1,17 +1,12 @@
 const fs = require('fs').promises;
-const opt = require('../config.js');
 
-async function write(data) {
+async function write(outputLocation, data, format) {
   try {
-    return await fs.writeFile(
-      opt.exportFileLocation,
-      data,
-      opt.format,
-    );
+    return await fs.writeFile(outputLocation, data, format);
   } catch (error) {
     console.error(
       'There was an issue in WRITING the data to the location: ',
-      opt.exportFileLocation,
+      opt.outputLocation,
     );
 
     if (opt.devMode === true) console.error(error);

@@ -1,9 +1,8 @@
 const fs = require('fs').promises;
-const opt = require('../config.js');
 
-async function read() {
+async function read(importLocation, format) {
   try {
-    return await fs.readFile(opt.importFileLocation, opt.format);
+    return await fs.readFile(importLocation, format);
   } catch (error) {
     console.error(
       'There was an issue IMPORTING the data from the location:',
