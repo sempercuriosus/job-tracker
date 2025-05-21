@@ -1,5 +1,5 @@
 const questions = require('./scipts/questions.js');
-const get = require('./scipts/get-data.js');
+const read = require('./scipts/get-data.js');
 const write = require('./scipts/export-data.js');
 const opt = require('./config.js');
 
@@ -13,10 +13,17 @@ async function main() {
   console.log(WELCOME_MESSAGE);
 
   try {
-    const DATA = await get();
+    const DATA = await read(opt.importFileLocation, opt.format);
 
     if (!DATA) {
       throw 'DATA read was undefined or otherwise not usable.';
+    }
+
+    const WRITE_BACKUP_FILE = opt.backup.writeBackupFile;
+
+    if (WRITE_BACKUP_FILE === true) {
+      //
+      write(opt.backup.backupFileLocation, DATA, opt.format);
     }
 
     const NEW_JOBS = await questions();
@@ -25,7 +32,11 @@ async function main() {
       throw 'NEW APPLICATION was undefined or otherwise not usable.';
     }
 
-    write(DATA + opt.splitOn + NEW_JOBS);
+    write(
+      opt.exportFileLocation,
+      DATA + opt.splitOn + NEW_JOBS,
+      opt.format,
+    );
   } catch (error) {
     console.log();
 
