@@ -1,10 +1,15 @@
 const options = {
   format: 'utf8',
   devMode: false,
+  backup: {
+    writeBackupFile: true,
+    backupFileLocation:
+      '/Users/keys/Documents/career/1111-jobs-bak.csv',
+  },
   importFileLocation:
-    '/Users/keys/Documents/career/2025-jobs copy.csv',
+    '/Users/keys/Documents/career/1-test-data.csv',
   exportFileLocation:
-    '/Users/keys/Documents/career/2025-jobs-main.csv',
+    '/Users/keys/Documents/career/1-test-data.csv',
   splitOn: '\n',
   columns: {
     1: 'Company',
