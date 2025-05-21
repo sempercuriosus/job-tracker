@@ -13,123 +13,144 @@ let details = {
   id: '',
 };
 
+let newJobs = '';
+
 // QUESTIONS
 async function questions() {
-  let returnString = '';
-  let endLoop = false;
+  let newJob = '';
+  let continueLoop = true;
 
-  while (endLoop === false) {
-    details.company = await input({
-      name: 'company',
-      message: 'Company Name',
-    });
+  //outer loop
+  while (continueLoop === true) {
+    // inner loop
+    let infoCorrect = false;
 
-    details.role = await select({
-      message: 'Role',
-      choices: [
-        {
-          name: 'Full-Stack Dev',
-          value: 'Full-Stack Developer',
-        },
-        {
-          name: 'Backend Dev',
-          value: 'Backend Developer',
-        },
-        {
-          name: 'Frontend Dev',
-          value: 'Frontend Developer',
-        },
-        {
-          name: 'Dev',
-          value: 'Developer',
-        },
-      ],
-    });
+    while (infoCorrect === false) {
+      console.log('Enter The Company Information:');
 
-    details.salary = await input({
-      name: 'salary',
-      message: 'Salary',
-    });
-
-    details.jobPosting = await input({
-      name: 'jobPosting',
-      message: 'Job Posting',
-    });
-
-    details.date = await input({
-      name: 'date',
-      message: 'Application Date',
-    });
-
-    const ADD_CONTACT = await select({
-      name: '',
-      message: 'Include Contact Info?',
-      choices: [
-        {
-          name: 'Yes',
-          value: true,
-        },
-        {
-          name: 'No',
-          value: false,
-        },
-      ],
-    });
-
-    if (ADD_CONTACT === true) {
-      details.contactName = await input({
-        name: 'contactName',
-        message: 'Contact Full Name',
+      details.company = await input({
+        name: 'company',
+        message: 'Company Name',
       });
 
-      details.contactPhone = await input({
-        name: 'contactPhone',
-        message: 'Contact Phone',
+      details.role = await select({
+        message: 'Role',
+        choices: [
+          {
+            name: 'Full-Stack Dev',
+            value: 'Full-Stack Developer',
+          },
+          {
+            name: 'Backend Dev',
+            value: 'Backend Developer',
+          },
+          {
+            name: 'Frontend Dev',
+            value: 'Frontend Developer',
+          },
+          {
+            name: 'Dev',
+            value: 'Developer',
+          },
+        ],
       });
 
-      details.contactEmail = await input({
-        name: 'contactEmail',
-        message: 'Contact Email',
+      details.salary = await input({
+        name: 'salary',
+        message: 'Salary',
+      });
+
+      details.jobPosting = await input({
+        name: 'jobPosting',
+        message: 'Job Posting',
+      });
+
+      details.date = await input({
+        name: 'date',
+        message: 'Application Date',
+      });
+
+      const ADD_CONTACT = await select({
+        name: '',
+        message: 'Include Contact Info?',
+        choices: [
+          {
+            name: 'Yes',
+            value: true,
+          },
+          {
+            name: 'No',
+            value: false,
+          },
+        ],
+      });
+
+      if (ADD_CONTACT === true) {
+        details.contactName = await input({
+          name: 'contactName',
+          message: 'Contact Full Name',
+        });
+
+        details.contactPhone = await input({
+          name: 'contactPhone',
+          message: 'Contact Phone',
+        });
+
+        details.contactEmail = await input({
+          name: 'contactEmail',
+          message: 'Contact Email',
+        });
+      }
+
+      // details.notes = await input({
+      //   message: 'Notes',
+      // });
+
+      details.id = uuidv4();
+
+      newJob = FormatLine(details);
+
+      console.log('-  -  -  -  -  -  -  -  -  -');
+      console.log(newJob);
+      console.log('-  -  -  -  -  -  -  -  -  -');
+
+      infoCorrect = await select({
+        message: 'Correct Data?',
+        choices: [
+          {
+            name: 'Yes',
+            value: true,
+          },
+          {
+            name: 'No',
+            value: false,
+          },
+        ],
       });
     }
 
-    // details.notes = await input({
-    //   message: 'Notes',
-    // });
+    newJobs = newJobs + newJob;
 
-    details.id = uuidv4();
-
-    returnString = formatReturnString(details);
-
-    console.log(
-      '-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -',
-    );
-    console.log(returnString);
-    console.log(
-      '-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -',
-    );
-
-    endLoop = await select({
-      message: 'Correct Data?',
+    continueLoop = await select({
+      message: 'Add Another Application?',
       choices: [
         {
-          name: 'Yes',
+          name: 'Continue',
           value: true,
         },
         {
-          name: 'No',
+          name: 'End',
           value: false,
-          default: false,
         },
       ],
     });
   }
 
-  return returnString;
+  return newJobs;
 }
 
-function formatReturnString(object) {
-  let returnString = '';
+function FormatLine(object) {
+  let newJob = '';
   let newApplication = Object.keys(object);
 
   newApplication.forEach((element) => {
@@ -137,10 +158,12 @@ function formatReturnString(object) {
       ? `"${object[element]}"`
       : object[element];
 
-    returnString += e.trim() + ',';
+    newJob += e.trim() + ',';
   });
 
-  return returnString;
+  newJob += '\n';
+
+  return newJob;
 }
 
 module.exports = questions;

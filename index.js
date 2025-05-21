@@ -19,13 +19,13 @@ async function main() {
       throw 'DATA read was undefined or otherwise not usable.';
     }
 
-    const NEW_APPLICATION = await questions();
+    const NEW_JOBS = await questions();
 
-    if (!NEW_APPLICATION) {
+    if (!NEW_JOBS) {
       throw 'NEW APPLICATION was undefined or otherwise not usable.';
     }
 
-    write(DATA + opt.splitOn + NEW_APPLICATION);
+    write(DATA + opt.splitOn + NEW_JOBS);
   } catch (error) {
     console.log();
 
