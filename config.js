@@ -4,12 +4,12 @@ const options = {
   backup: {
     writeBackupFile: true,
     backupFileLocation:
-      '/Users/keys/Documents/career/1111-jobs-bak.csv',
+      '/Users/keys/Documents/career/applications/2025-jobs-bak.csv',
   },
   importFileLocation:
-    '/Users/keys/Documents/career/1-test-data.csv',
+    '/Users/keys/Documents/career/applications/2025-jobs-main.csv',
   exportFileLocation:
-    '/Users/keys/Documents/career/1-test-data.csv',
+    '/Users/keys/Documents/career/applications/2025-jobs-main.csv',
   splitOn: '\n',
   columns: {
     1: 'Company',

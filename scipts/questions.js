@@ -1,5 +1,10 @@
 const { input, select } = require('@inquirer/prompts');
 const { v4: uuidv4 } = require('uuid');
+const getTheDate = require('./date.js');
+
+const CURRENT_DATE = getTheDate();
+
+console.log(CURRENT_DATE);
 
 let details = {
   company: '',
@@ -26,6 +31,8 @@ async function questions() {
     let infoCorrect = false;
 
     while (infoCorrect === false) {
+      console.log('');
+      console.log('');
       console.log('Enter The Company Information:');
 
       details.company = await input({
@@ -55,20 +62,22 @@ async function questions() {
         ],
       });
 
-      details.salary = await input({
-        name: 'salary',
-        message: 'Salary',
-      });
-
       details.jobPosting = await input({
         name: 'jobPosting',
         message: 'Job Posting',
       });
 
-      details.date = await input({
-        name: 'date',
-        message: 'Application Date',
+      details.salary = await input({
+        name: 'salary',
+        message: 'Salary',
       });
+
+      details.date = CURRENT_DATE;
+
+      // await input({
+      //   name: 'date',
+      //   message: 'Application Date',
+      // });
 
       const ADD_CONTACT = await select({
         name: '',
