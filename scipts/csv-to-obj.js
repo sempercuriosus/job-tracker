@@ -4,11 +4,10 @@ function CsvToObj(csvData) {
   try {
     const HEADERS = csvData[0].split(',');
 
-    const DATA = csvData.map((element) => {
-      const EL = element.slice(0, -1);
-      const LINE_EL = EL.trim().split(',');
+    const DATA = csvData.slice(1).map((element) => {
+      const EL = element.slice(0, -1).trim().split(',');
 
-      return LINE_EL.reduce((acc, value, index) => {
+      return EL.reduce((acc, value, index) => {
         acc[HEADERS[index].trim()] = value.trim();
         return acc;
       }, {});
