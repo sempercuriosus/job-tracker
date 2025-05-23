@@ -4,8 +4,6 @@ const getTheDate = require('./date.js');
 
 const CURRENT_DATE = getTheDate();
 
-console.log(CURRENT_DATE);
-
 let details = {
   company: '',
   role: '',
@@ -71,6 +69,8 @@ async function questions() {
         name: 'salary',
         message: 'Salary',
       });
+
+      details.salary = details.salary.replace(',', '');
 
       details.date = CURRENT_DATE;
 
