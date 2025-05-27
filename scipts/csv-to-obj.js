@@ -2,9 +2,10 @@ function CsvToObj(csvData) {
   //
 
   try {
-    const HEADERS = csvData[0].split(',');
+    const DATA_RAW = csvData.split('\n');
+    const HEADERS = DATA_RAW[0].split(',');
 
-    const DATA = csvData.slice(1).map((element) => {
+    const DATA = DATA_RAW.slice(1).map((element) => {
       const EL = element.slice(0, -1).trim().split(',');
 
       return EL.reduce((acc, value, index) => {
