@@ -70,7 +70,7 @@ async function questions() {
         message: 'Salary',
       });
 
-      details.salary = details.salary.replace(',', '');
+      details.salary = details.salary.replaceAll(',', '');
 
       details.date = CURRENT_DATE;
 
