@@ -12,13 +12,14 @@ async function main() {
   + - - - - - - - - - - - - - - - +
   `;
 
-  console.log(WELCOME_MESSAGE);
+  const DEV_MESSAGE =
+    '\n\n*** DEV MODE is enabled *** File output and backup are DISABLED in this mode. \n';
 
-  if (opt.devMode === true) {
-    console.log(
-      '\n*** DEV MODE is enabled *** File output and backup are DISABLED in this mode. \n',
-    );
+  opt.devMode === false
+    ? console.log(WELCOME_MESSAGE)
+    : console.log(WELCOME_MESSAGE, DEV_MESSAGE);
 
+  try {
     const DATA_PREV = await read(
       opt.importFileLocation,
       opt.format,
@@ -28,20 +29,9 @@ async function main() {
 
     const FILTERED = filterObj(DATA_OBJ.data);
 
-    console.table(FILTERED, [
-      'Company',
-      'Role',
-      'DateApplied',
-      'Id',
-    ]);
-  } else {
-    // DEV MODE OFF
-    try {
-      const DATA_PREV = await read(
-        opt.importFileLocation,
-        opt.format,
-      );
+    console.table(FILTERED);
 
+    if (opt.devMode === false) {
       if (!DATA_PREV) {
         throw 'DATA_PREV read was undefined or otherwise not usable.';
       }
@@ -65,11 +55,11 @@ async function main() {
         DATA_PREV + opt.splitOn + DATA_NEW,
         opt.format,
       );
-    } catch (error) {
-      console.error(error);
-    } finally {
-      console.log('Script Complete.');
     }
+  } catch (error) {
+    console.error(error);
+  } finally {
+    console.log('Script Complete.');
   }
 }
 
