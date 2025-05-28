@@ -138,7 +138,7 @@ async function questions() {
       });
     }
 
-    newJobs = newJobs + newJob;
+    newJobs += newJob;
 
     continueLoop = await select({
       message: 'Add Another Application?',
@@ -170,7 +170,7 @@ function FormatLine(object) {
     newJob += e.trim() + ',';
   });
 
-  newJob += '\n';
+  // newJob += '\n';
 
   return newJob;
 }
