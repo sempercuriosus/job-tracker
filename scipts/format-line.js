@@ -6,10 +6,11 @@ function FormatLine(objToFormat) {
       ? `"${objToFormat[el]}"`
       : objToFormat[el];
 
-    lines += line.trim() + ',';
+    lines += line.trim();
   });
 
   return lines;
 }
 
 module.exports = FormatLine;
+
