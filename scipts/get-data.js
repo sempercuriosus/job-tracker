@@ -12,10 +12,8 @@ async function read(importLocation, format) {
   } catch (error) {
     console.error(
       'There was an issue IMPORTING the data from the location:',
-      opt.importFileLocation,
+      importLocation,
     );
-
-    if (opt.devMode === true) console.error(error);
 
     return; // stopping the execution of the script, with some grace, hopefully.
   }
