@@ -1,7 +1,9 @@
-function CsvToObj(csvData) {
-  //
-
+async function CsvToObj(csvData) {
   try {
+    if (!csvData) {
+      throw 'Incoming CSV Data is empty.';
+    }
+
     const DATA_RAW = csvData.split('\n');
     const HEADERS = DATA_RAW[0].split(',');
 
@@ -17,6 +19,7 @@ function CsvToObj(csvData) {
     return { headers: HEADERS, data: DATA };
   } catch (error) {
     console.error(error);
+
     return;
   }
 }
