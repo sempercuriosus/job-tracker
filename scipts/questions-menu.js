@@ -17,6 +17,10 @@ async function MenuQuestions() {
         name: 'Update Previous Applications',
         value: 'update',
       },
+      {
+        name: 'Exit',
+        value: 'xEXITx',
+      },
     ],
   });
 }
