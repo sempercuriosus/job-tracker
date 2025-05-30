@@ -11,6 +11,7 @@ const options = {
   exportFileLocation:
     '/Users/keys/Documents/career/applications/2025-jobs-main.csv',
   splitOn: '\n',
+  columnWidth: 20,
   columns: [
     'Company',
     'Role',
