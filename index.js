@@ -34,7 +34,7 @@ async function main() {
     console.info('Backup Complete');
   }
 
-  const DATA_OBJ = await csvToObj(DATA);
+  const DATA_AS_OBJECT = await csvToObj(DATA);
 
   if (OPTION_SELECTED === 'add') {
     const DATA_NEW = await questions();
@@ -45,7 +45,7 @@ async function main() {
       opt.format,
     );
   } else if (OPTION_SELECTED === 'list') {
-    const FILTERED = filterObj(DATA_OBJ.data);
+    const FILTERED = filterObj(DATA_AS_OBJECT.data);
 
     console.table(FILTERED);
   } else if (OPTION_SELECTED === 'update') {
