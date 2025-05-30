@@ -17,7 +17,7 @@ let details = {
   id: '',
 };
 
-let newJobs = '';
+let jobs = [];
 
 // QUESTIONS
 async function questions() {
@@ -130,7 +130,7 @@ async function questions() {
       });
     }
 
-    newJobs += newJob;
+    jobs.push(newJob);
 
     continueLoop = await select({
       message: 'Add Another Application?',
@@ -147,11 +147,13 @@ async function questions() {
     });
   }
 
-  if (!newJobs) {
+  if (!jobs || jobs.length === 0) {
     throw 'New job information was missing';
   }
 
-  return newJobs;
+  const jobsString = jobs.join('\n');
+
+  return jobsString;
 }
 
 module.exports = questions;
