@@ -1,6 +1,7 @@
 const { input, select } = require('@inquirer/prompts');
 const { v4: uuidv4 } = require('uuid');
 const getTheDate = require('./date.js');
+const FormatLine = require('./format-line.js');
 
 const CURRENT_DATE = getTheDate();
 
@@ -74,11 +75,6 @@ async function questions() {
 
       details.date = CURRENT_DATE;
 
-      // await input({
-      //   name: 'date',
-      //   message: 'Application Date',
-      // });
-
       const ADD_CONTACT = await select({
         name: '',
         message: 'Include Contact Info?',
@@ -111,16 +107,12 @@ async function questions() {
         });
       }
 
-      // details.notes = await input({
-      //   message: 'Notes',
-      // });
-
       details.id = uuidv4();
 
       newJob = FormatLine(details);
 
       console.log('-  -  -  -  -  -  -  -  -  -');
-      console.log(newJob);
+      console.log(details);
       console.log('-  -  -  -  -  -  -  -  -  -');
 
       infoCorrect = await select({
@@ -155,24 +147,11 @@ async function questions() {
     });
   }
 
+  if (!newJobs) {
+    throw 'New job information was missing';
+  }
+
   return newJobs;
-}
-
-function FormatLine(object) {
-  let newJob = '';
-  let newApplication = Object.keys(object);
-
-  newApplication.forEach((element) => {
-    let e = object[element].includes(',')
-      ? `"${object[element]}"`
-      : object[element];
-
-    newJob += e.trim() + ',';
-  });
-
-  // newJob += '\n';
-
-  return newJob;
 }
 
 module.exports = questions;
