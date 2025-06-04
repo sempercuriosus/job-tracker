@@ -2,7 +2,8 @@ const fs = require('fs').promises;
 
 async function write(outputLocation, data, format) {
   try {
-    return await fs.writeFile(outputLocation, data, format);
+    await fs.writeFile(outputLocation, data, format);
+    console.info('File Write Complete');
   } catch (error) {
     console.error(
       'There was an issue in WRITING the data to the location: ',
