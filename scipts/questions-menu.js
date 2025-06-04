@@ -19,7 +19,7 @@ async function MenuQuestions() {
       },
       {
         name: 'Exit',
-        value: 'xEXITx',
+        value: 'exit-script',
       },
     ],
   });
