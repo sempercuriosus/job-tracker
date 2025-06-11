@@ -1,9 +1,11 @@
 const fs = require('fs').promises;
+const csv_obj = require('./csv-object');
 
 async function write(outputLocation, data, format) {
   try {
-    await fs.writeFile(outputLocation, data, format);
-    console.info('File Write Complete');
+    const DATA_AS_CSV = await csv_obj.ObjToCsv(data);
+
+    await fs.writeFile(outputLocation, DATA_AS_CSV, format);
   } catch (error) {
     console.error(
       'There was an issue in WRITING the data to the location: ',
