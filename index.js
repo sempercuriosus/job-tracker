@@ -32,8 +32,6 @@ async function main() {
     console.info('Backup Complete');
   }
 
-  const FILTERED = filterObj(DATA.data);
-
   let continueRun = true;
 
   while (continueRun === true) {
@@ -56,10 +54,12 @@ async function main() {
         console.log(
           'DEV MODE ENABLED',
           'Data is logged to the console: ',
-          DATA_NEW,
+          DATA,
         );
       }
     } else if (OPTION_SELECTED === 'list') {
+      const FILTERED = filterObj(DATA.data);
+
       console.table(FILTERED);
     }
     // else if (OPTION_SELECTED === 'update') {
