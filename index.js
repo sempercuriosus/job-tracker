@@ -3,7 +3,7 @@ const read = require('./scipts/get-data.js');
 const write = require('./scipts/export-data.js');
 const questions = require('./scipts/questions.js');
 const menuOptions = require('./scipts/questions-menu.js');
-const csvToObj = require('./scipts/csv-to-obj.js');
+const updateRecord = require('./scipts/questions-update.js');
 const filterObj = require('./scipts/filter-object.js');
 
 async function main() {
@@ -20,8 +20,6 @@ async function main() {
     ? console.log(WELCOME_MESSAGE, DEV_MESSAGE)
     : console.log(WELCOME_MESSAGE);
 
-  const OPTION_SELECTED = await menuOptions();
-
   const DATA = await read(opt.importFileLocation, opt.format);
 
   if (
@@ -34,27 +32,56 @@ async function main() {
     console.info('Backup Complete');
   }
 
-  const DATA_AS_OBJECT = await csvToObj(DATA);
+  const FILTERED = filterObj(DATA.data);
 
-  if (OPTION_SELECTED === 'add') {
-    const DATA_NEW = await questions();
+  let continueRun = true;
 
-    await write(
-      opt.exportFileLocation,
-      DATA + opt.splitOn + DATA_NEW,
-      opt.format,
-    );
-  } else if (OPTION_SELECTED === 'list') {
-    const FILTERED = filterObj(DATA_AS_OBJECT.data);
+  while (continueRun === true) {
+    const OPTION_SELECTED = await menuOptions();
 
-    console.table(FILTERED);
-  } else if (OPTION_SELECTED === 'update') {
-    //
-    //
-    //
-  } else {
-    console.error('Invalid Option');
-    return;
+    if (OPTION_SELECTED === 'add') {
+      const DATA_NEW = await questions();
+
+      if (!DATA_NEW) {
+        console.error('NO NEW DATA');
+
+        return;
+      }
+
+      DATA.data.push(...DATA_NEW);
+
+      if (opt.devMode === false) {
+        await write(opt.exportFileLocation, DATA, opt.format);
+      } else {
+        console.log(
+          'DEV MODE ENABLED',
+          'Data is logged to the console: ',
+          DATA_NEW,
+        );
+      }
+    } else if (OPTION_SELECTED === 'list') {
+      console.table(FILTERED);
+    }
+    // else if (OPTION_SELECTED === 'update') {
+    //   console.table(FILTERED);
+
+    //   const ID = await updateRecord();
+    //   console.log(ID);
+
+    //   if (ID) {
+    //     const DATA_NEW = await questions();
+    //   }
+    // }
+    else if (OPTION_SELECTED === 'exit-script') {
+      continueRun = false;
+
+      return;
+    } else {
+      console.error('Invalid Option');
+      continueRun = false;
+
+      return;
+    }
   }
 
   console.log('Script Complete.');
