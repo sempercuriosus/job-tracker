@@ -8,7 +8,8 @@ async function CsvToObj(csvData) {
     const HEADERS = DATA_RAW[0].split(',');
 
     const DATA = DATA_RAW.slice(1).map((element) => {
-      const EL = element.slice(0, -1).trim().split(',');
+      // const EL = element.slice(0, -1).trim().split(',');
+      const EL = element.trim().split(',');
 
       return EL.reduce((acc, value, index) => {
         acc[HEADERS[index].trim()] = value.trim();
