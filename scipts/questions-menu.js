@@ -13,10 +13,10 @@ async function MenuQuestions() {
         name: 'List Previous Applications',
         value: 'list',
       },
-      {
-        name: 'Update Previous Applications',
-        value: 'update',
-      },
+      // {
+      //   name: 'Update Previous Applications',
+      //   value: 'update',
+      // },
       {
         name: 'Exit',
         value: 'exit-script',
