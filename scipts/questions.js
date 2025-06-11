@@ -5,15 +5,15 @@ const getTheDate = require('./date.js');
 const CURRENT_DATE = getTheDate();
 
 const DETAILS_TEMPLATE = {
-  company: '',
-  role: '',
-  salary: 0,
-  jobPosting: '',
-  date: '',
-  contactName: '',
-  contactPhone: '',
-  contactEmail: '',
-  id: '',
+  Company: '',
+  Role: '',
+  Salary: 0,
+  JobPosting: '',
+  Date: '',
+  ContactName: '',
+  ContactPhone: '',
+  ContactEmail: '',
+  Id: '',
 };
 
 // QUESTIONS
