@@ -31,12 +31,12 @@ async function questions() {
         console.log('Enter The Company Information:');
         console.log('------------------------------');
 
-        const company = await input({
+        const Company = await input({
           name: 'company',
           message: 'Company Name',
         });
 
-        const role = await select({
+        const Role = await select({
           message: 'Role',
           choices: [
             {
@@ -58,48 +58,48 @@ async function questions() {
           ],
         });
 
-        const salary = await input({
+        const Salary = await input({
           name: 'jobPosting',
           message: 'Job Posting',
         });
 
-        salary.replaceAll(',', '');
+        Salary.replaceAll(',', '');
 
-        const jobPosting = await input({
+        const JobPosting = await input({
           name: 'salary',
           message: 'Salary',
         });
 
-        const date = CURRENT_DATE;
+        const Date = CURRENT_DATE;
 
-        const contactName = await input({
+        const ContactName = await input({
           name: 'contactName',
           message: 'Contact Full Name',
         });
 
-        const contactPhone = await input({
+        const ContactPhone = await input({
           name: 'contactPhone',
           message: 'Contact Phone',
         });
 
-        const contactEmail = await input({
+        const ContactEmail = await input({
           name: 'contactEmail',
           message: 'Contact Email',
         });
 
-        const id = uuidv4();
+        const Id = uuidv4();
 
         const NEW_DATA = {
           ...DETAILS_TEMPLATE,
-          company,
-          role,
-          salary,
-          jobPosting,
-          date,
-          contactName,
-          contactPhone,
-          contactEmail,
-          id,
+          Company,
+          Role,
+          Salary,
+          JobPosting,
+          Date,
+          ContactName,
+          ContactPhone,
+          ContactEmail,
+          Id,
         };
 
         if (!newData) {
