@@ -58,14 +58,14 @@ async function questions() {
           ],
         });
 
-        const Salary = await input({
+        const JobPosting = await input({
           name: 'jobPosting',
           message: 'Job Posting',
         });
 
         Salary.replaceAll(',', '');
 
-        const JobPosting = await input({
+        const Salary = await input({
           name: 'salary',
           message: 'Salary',
         });
